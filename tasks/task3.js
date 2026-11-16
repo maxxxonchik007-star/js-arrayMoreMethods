@@ -2,14 +2,24 @@
 // Необхідно додати нове поле percentOfSuccess, яке буде показувати відсоток завойованих медалей від загальної кількості спортсменів у кожному виді спорту.
 "ВИКОРИСТОВУВАТИ ЛИШЕ МЕТОДИ МАСИВІВ filter, map, sort та інші, які є в файлі methods.js."
 "Можливо в цій задачі доведеться в методі map розкривати фігурні дужки для роботи з обʼєктом."
-// Щось тиру Array.map(item => {
-//   blablabla
-//  .. return ЩОСЬ)
-// })
 "Для заокруглення числа можна до десятих використовуйте .toFixed(1)"
 
 function addSuccessPercent(olympicRepresentation) {
-  // Ваш код
+  return olympicRepresentation.map((item) => {
+    if (item.athletes === 0) {
+      return {
+        ...item,
+        percentOfSuccess: '0%'
+      };
+    }
+
+    const percent = (item.medals / item.athletes) * 100;
+
+    return {
+      ...item,
+      percentOfSuccess: percent.toFixed(1) + '%'
+    };
+  });
 }
 
 const olympicRepresentation = [
